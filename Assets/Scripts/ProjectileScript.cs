@@ -5,20 +5,24 @@ using UnityEngine;
 public class ProjectileScript : MonoBehaviour
 {
     [SerializeField] float projectileSpeed;
+    MovementController player;
 
     Rigidbody rb;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        player = FindObjectOfType<MovementController>();
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        //rb.MovePosition(transform.position + transform.forward * Time.deltaTime * projectileSpeed);
-        rb.AddForce(transform.forward * Time.deltaTime * projectileSpeed, ForceMode.Impulse);
+        rb.velocity = Vector3.zero;
+    }
+
+    void FixedUpdate()
+    {
+        rb.AddForce(transform.forward * projectileSpeed * Time.deltaTime, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)

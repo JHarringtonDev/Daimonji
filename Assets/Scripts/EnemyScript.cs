@@ -6,26 +6,47 @@ using UnityEngine.Pool;
 
 public class EnemyScript : MonoBehaviour
 {
+    [SerializeField] LayerMask playerLayer;
+    [SerializeField] float playerRangeDelay;
+    [SerializeField] float fireDelay;
+
     MovementController player;
+    bool canFire = true;
 
     private void Start()
     {
         player = FindObjectOfType<MovementController>();
-        Invoke("FireProjectile", 5);
     }
 
     private void Update()
     {
-        transform.LookAt(player.transform.position);
+        if(Physics.Raycast(transform.position, player.transform.position - transform.position, 25, playerLayer))
+        {
+            transform.LookAt(player.transform.position);
+            if(canFire)
+            {
+                StartCoroutine(HandleProjectile());
+            }
+        }
     }
 
-    void FireProjectile()
+    IEnumerator HandleProjectile()
+    {
+        canFire = false;
+        //yield return new WaitForSeconds(playerRangeDelay);
+        StartCoroutine(FireProjectile());
+        yield return new WaitForSeconds(fireDelay);
+        canFire = true;
+    }
+
+    IEnumerator FireProjectile()
     {
         GameObject bullet = ProjectilePool.SharedInstance.GetPooledObject();
         if (bullet != null)
         {
             bullet.transform.position = transform.position;
             bullet.transform.rotation = transform.rotation;
+            yield return new WaitForSeconds(1f);
             bullet.SetActive(true);
         }
     }
