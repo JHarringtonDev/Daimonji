@@ -6,6 +6,7 @@ public class TargetScript : MonoBehaviour
 {
     MovementController player;
     [SerializeField] bool isEnemy;
+    [SerializeField] bool isProjectile;
     [SerializeField] int maxHealth;
     [SerializeField] float deathTime;
     int currentHealth;
@@ -18,20 +19,40 @@ public class TargetScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        player.RestoreDash();
-        if (isEnemy && currentHealth > 0)
+        if (other.GetComponent<MovementController>() != null)
         {
-            currentHealth--;
+            player.RestoreDash();
+            if (isEnemy && currentHealth > 0)
+            {
+                currentHealth--;
+            }
+            else
+            {
+                deactivateTarget();
+            }
         }
-        else
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (isProjectile)
         {
-            deactivateTarget();
+            if (player.GetDashing())
+            {
+                player.RestoreDash();
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                player.TakeDamage();
+                gameObject.SetActive(false);
+            }
         }
     }
 
     void deactivateTarget()
     {
-        if (!isEnemy)
+        if (!isEnemy && !isProjectile)
         {
             AudioManager.PlaySound("gem");
             GetComponent<SphereCollider>().enabled = false;
@@ -45,7 +66,7 @@ public class TargetScript : MonoBehaviour
 
     public void reactivateTarget()
     {
-        if (!isEnemy)
+        if (!isEnemy && !isProjectile)
         {
             GetComponent<SphereCollider>().enabled = true;
             GetComponent<MeshRenderer>().enabled = true;
@@ -55,5 +76,6 @@ public class TargetScript : MonoBehaviour
     IEnumerator DisableEnemy()
     {
         yield return new WaitForSeconds(deathTime);
+        gameObject.SetActive(false);
     }
 }

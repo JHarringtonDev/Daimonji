@@ -22,9 +22,12 @@ public class MovementController : MonoBehaviour
     [SerializeField] float groundDrag;
     [SerializeField] float playerHeight;
     [SerializeField] LayerMask groundLayer;
+
     bool isGrounded;
     bool canDash;
     bool isDashing;
+
+    int playerHealth = 3;
 
     Rigidbody rb;
     CapsuleCollider capsuleCollider;
@@ -100,6 +103,12 @@ public class MovementController : MonoBehaviour
         isDashing = false;
     }
 
+    IEnumerator HandleDeath()
+    {
+        Debug.Log("player has died");
+        yield return null;
+    }
+
     public void RestoreDash()
     {
         canDash = true;
@@ -120,5 +129,14 @@ public class MovementController : MonoBehaviour
     public void StopVelocity()
     {
         rb.velocity = Vector3.zero;
+    }
+
+    public void TakeDamage()
+    {
+        playerHealth--;
+        if (playerHealth <= 0) 
+        {
+            StartCoroutine(HandleDeath());
+        }
     }
 }

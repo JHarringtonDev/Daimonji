@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 81592208902204593}
   - component: {fileID: 2646085122575955545}
   - component: {fileID: 5712408529467886519}
+  - component: {fileID: 3547650367688778558}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -191,6 +192,22 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3547650367688778558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5820077775400290658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60980a4f01fd3ae4eab03c5261be5241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnemy: 0
+  isProjectile: 1
+  maxHealth: 1
+  deathTime: 0
 --- !u!1001 &2406696341649119487
 PrefabInstance:
   m_ObjectHideFlags: 0
