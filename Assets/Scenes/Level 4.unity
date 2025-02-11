@@ -645,6 +645,13 @@ MonoBehaviour:
     m_Bits: 64
   playerRangeDelay: 1
   fireDelay: 2
+  activeRuneMaterial: {fileID: 2100000, guid: 0574116a7188c654ab34fcd54a2d0ecc, type: 2}
+  connectedRune: {fileID: 2005585127}
+--- !u!23 &2005585127 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4759208585269961588, guid: 05a13ed8018448040a1edcd0335268a5, type: 3}
+  m_PrefabInstance: {fileID: 1391663767}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3676007436747240795
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,13 +9,18 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] LayerMask playerLayer;
     [SerializeField] float playerRangeDelay;
     [SerializeField] float fireDelay;
+    [SerializeField] Material activeRuneMaterial;
+    [SerializeField] MeshRenderer connectedRune;
 
     MovementController player;
+    ExitDoor exitDoor;
+
     bool canFire = true;
 
     private void Start()
     {
         player = FindObjectOfType<MovementController>();
+        exitDoor = FindObjectOfType<ExitDoor>();
     }
 
     private void Update()
@@ -49,6 +54,12 @@ public class EnemyScript : MonoBehaviour
             yield return new WaitForSeconds(1f);
             bullet.SetActive(true);
         }
+    }
+
+    private void OnDisable()
+    {
+        connectedRune.material = activeRuneMaterial;
+        exitDoor.ActivateRune();
     }
 
 }
