@@ -21,13 +21,13 @@ public class TargetScript : MonoBehaviour
     {
         if (other.GetComponent<MovementController>() != null)
         {
-            player.RestoreDash();
             if (isEnemy && currentHealth > 0)
             {
                 currentHealth--;
             }
             else
             {
+                player.RestoreDash();
                 deactivateTarget();
             }
         }
