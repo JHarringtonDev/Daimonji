@@ -33,6 +33,7 @@ public class BigRune : MonoBehaviour
             {
                 AudioManager.PlaySound("rune");
                 player.StopVelocity();
+                player.RestoreDash();
                 bigRuneMesh.material = activatedMaterial;
                 smallRune.material = activatedMaterial;
                 exitDoor.ActivateRune();
