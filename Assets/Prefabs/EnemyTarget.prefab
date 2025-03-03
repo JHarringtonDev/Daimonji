@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnemy: 1
   isProjectile: 0
-  maxHealth: 3
+  maxHealth: 1
   deathTime: 2
 --- !u!114 &5323966841230543339
 MonoBehaviour:
