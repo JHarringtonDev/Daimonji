@@ -34,6 +34,7 @@ public class MovementController : MonoBehaviour
 
     Rigidbody rb;
     CapsuleCollider capsuleCollider;
+    AudioSource ambiance;
     PauseMenu pauseMenu;
     CameraControl cameraHold;
 
@@ -44,6 +45,7 @@ public class MovementController : MonoBehaviour
         cameraHold = FindObjectOfType<CameraControl>();
         pauseMenu = FindObjectOfType<PauseMenu>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        ambiance = GetComponent<AudioSource>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -85,6 +87,7 @@ public class MovementController : MonoBehaviour
             if (!isAlive && transform.localScale.x > 0)
             {
                 transform.localScale -= Vector3.one * Time.deltaTime;
+                ambiance.volume -= Time.deltaTime;
                 var main = fireParticles.main;
                 main.loop = false;
             }
