@@ -126,7 +126,7 @@ public class MovementController : MonoBehaviour
     {
         Debug.Log("player has died");
         isAlive = false;
-        rb.useGravity = false;
+        rb.isKinematic = true;
 
         yield return null;
     }
