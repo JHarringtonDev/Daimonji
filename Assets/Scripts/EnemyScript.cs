@@ -58,7 +58,10 @@ public class EnemyScript : MonoBehaviour
 
     private void OnDisable()
     {
-        connectedRune.material = activeRuneMaterial;
+        if(connectedRune != null)
+        {
+            connectedRune.material = activeRuneMaterial;
+        }
         exitDoor.ActivateRune();
     }
 
