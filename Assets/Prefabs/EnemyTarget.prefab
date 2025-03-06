@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5743060037828331439}
   - component: {fileID: 8832333721645556270}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 8131674047992368395}
   - component: {fileID: 657066905128083504}
   - component: {fileID: 5323966841230543339}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,6 +251,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: human_skull_1_3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ed553d42416a7f14993fa527f0df9b9f, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -272,6 +276,10 @@ PrefabInstance:
     - target: {fileID: 103198, guid: 23988051824e658488e40be3554ac45b, type: 3}
       propertyPath: m_Name
       value: FX_Fire_02 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 103198, guid: 23988051824e658488e40be3554ac45b, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 456254, guid: 23988051824e658488e40be3554ac45b, type: 3}
       propertyPath: m_LocalScale.x

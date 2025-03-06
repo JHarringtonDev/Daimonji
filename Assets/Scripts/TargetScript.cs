@@ -35,7 +35,7 @@ public class TargetScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isProjectile)
+        if (isProjectile && collision.gameObject.tag == "Player")
         {
             if (player.GetDashing())
             {
