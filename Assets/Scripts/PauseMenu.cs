@@ -8,14 +8,16 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] AudioSource audioManager;
     [SerializeField] AudioSource playerAudio;
     [SerializeField] Slider volumeSlider;
+    [SerializeField] Slider cameraSlider;
     [SerializeField] GameObject pauseMenu;
 
+    CameraControl cameraControl;
     bool isActive;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        cameraControl = FindObjectOfType<CameraControl>();
     }
 
     // Update is called once per frame
@@ -60,6 +62,11 @@ public class PauseMenu : MonoBehaviour
     {
         audioManager.volume = volumeSlider.value;
         playerAudio.volume = volumeSlider.value;
+    }
+
+    public void adjustSensitivity()
+    {
+        cameraControl.changeSensitivity(cameraSlider.value);
     }
 
     public bool isPaused()

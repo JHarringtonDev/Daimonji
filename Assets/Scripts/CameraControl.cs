@@ -34,5 +34,10 @@ public class CameraControl : MonoBehaviour
         }
     }
 
+    public void changeSensitivity(float value)
+    {
+        mouseSpeed = value;
+    }
+
     //Input.GetAxis("Mouse Y")
 }
