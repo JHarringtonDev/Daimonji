@@ -23,9 +23,12 @@ public class MovementController : MonoBehaviour
     [SerializeField] float playerHeight;
     [SerializeField] LayerMask groundLayer;
 
+    [SerializeField] ParticleSystem fireParticles;
+
     bool isGrounded;
     bool canDash;
     bool isDashing;
+    bool isAlive = true;
 
     int playerHealth = 3;
 
@@ -78,6 +81,13 @@ public class MovementController : MonoBehaviour
             {
                 StartCoroutine(HandleDash());
             }
+
+            if (!isAlive && transform.localScale.x > 0)
+            {
+                transform.localScale -= Vector3.one * Time.deltaTime;
+                var main = fireParticles.main;
+                main.loop = false;
+            }
         }
     }
 
@@ -112,6 +122,9 @@ public class MovementController : MonoBehaviour
     IEnumerator HandleDeath()
     {
         Debug.Log("player has died");
+        isAlive = false;
+        rb.useGravity = false;
+
         yield return null;
     }
 

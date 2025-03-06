@@ -1002,6 +1002,10 @@ PrefabInstance:
       propertyPath: dashDisplay
       value: 
       objectReference: {fileID: 1085055170}
+    - target: {fileID: 5685728482253715031, guid: 073e0eb42d32894478ddb6231bcb2a1e, type: 3}
+      propertyPath: fireParticles
+      value: 
+      objectReference: {fileID: 2122120949}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3617,6 +3621,11 @@ MeshRenderer:
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 2767400650531568878, guid: 05a13ed8018448040a1edcd0335268a5, type: 3}
   m_PrefabInstance: {fileID: 1391663767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2122120949 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5559084945955169396, guid: 073e0eb42d32894478ddb6231bcb2a1e, type: 3}
+  m_PrefabInstance: {fileID: 673649659}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3676007436747240795
 PrefabInstance:
