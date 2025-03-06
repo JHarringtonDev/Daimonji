@@ -31,6 +31,7 @@ public class BigRune : MonoBehaviour
         {
             if (player.GetDashing() && !isActivated)
             {
+                isActivated = true;
                 AudioManager.PlaySound("rune");
                 player.StopVelocity();
                 player.RestoreDash();
