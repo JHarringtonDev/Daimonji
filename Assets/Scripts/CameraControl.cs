@@ -5,9 +5,14 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     [SerializeField] float mouseSpeed;
-
+    PauseMenu pauseMenu;
     float yRotation;
     float xRotation;
+
+    private void Start()
+    {
+        pauseMenu = FindObjectOfType<PauseMenu>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -18,14 +23,15 @@ public class CameraControl : MonoBehaviour
         //
         //float clampedX = Mathf.Clamp(xRotation, -30f, 30f);
         //transform.eulerAngles = new Vector3(clampedX, transform.localEulerAngles.y + mouseInput.y, 0);
+        if (!pauseMenu.isPaused())
+        {
+            yRotation -= mouseSpeed * Input.GetAxis("Mouse Y");
+            xRotation = mouseSpeed * Input.GetAxis("Mouse X");
 
-        yRotation -= mouseSpeed * Input.GetAxis("Mouse Y");
-        xRotation = mouseSpeed * Input.GetAxis("Mouse X");
+            yRotation = Mathf.Clamp(yRotation, -90f, 90f);
 
-        yRotation = Mathf.Clamp(yRotation, -90f, 90f);
-
-        transform.eulerAngles = new Vector3(yRotation, transform.localEulerAngles.y + xRotation, 0);
-
+            transform.eulerAngles = new Vector3(yRotation, transform.localEulerAngles.y + xRotation, 0);
+        }
     }
 
     //Input.GetAxis("Mouse Y")

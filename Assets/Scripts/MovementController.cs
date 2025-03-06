@@ -31,7 +31,7 @@ public class MovementController : MonoBehaviour
 
     Rigidbody rb;
     CapsuleCollider capsuleCollider;
-
+    PauseMenu pauseMenu;
     CameraControl cameraHold;
 
     // Start is called before the first frame update
@@ -39,6 +39,7 @@ public class MovementController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         cameraHold = FindObjectOfType<CameraControl>();
+        pauseMenu = FindObjectOfType<PauseMenu>();
         capsuleCollider = GetComponent<CapsuleCollider>();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -51,42 +52,47 @@ public class MovementController : MonoBehaviour
     {
         //Vector3 mouseInput = new Vector3(0, Input.GetAxis("Mouse X"), 0);
         //transform.eulerAngles += mouseInput * mouseSpeed;
-
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight / 2 + 0.2f, groundLayer);
-
-        if (isGrounded)
+        if (!pauseMenu.isPaused())
         {
-            rb.drag = groundDrag;
-            moveSpeed = groundspeed;
-            if (!isDashing && !canDash)
+            isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight / 2 + 0.2f, groundLayer);
+
+            if (isGrounded)
             {
-                RestoreDash();
+                rb.drag = groundDrag;
+                moveSpeed = groundspeed;
+                if (!isDashing && !canDash)
+                {
+                    RestoreDash();
+                }
             }
-        }
-        else
-        {
-            moveSpeed = airSpeed;
-            if (!isDashing)
+            else
             {
-                rb.drag = 0;
+                moveSpeed = airSpeed;
+                if (!isDashing)
+                {
+                    rb.drag = 0;
+                }
             }
-        }
 
-        if(Input.GetMouseButtonDown(0) && canDash && !isDashing)
-        {
-            StartCoroutine(HandleDash());
+            if(Input.GetMouseButtonDown(0) && canDash && !isDashing)
+            {
+                StartCoroutine(HandleDash());
+            }
         }
     }
 
     void LateUpdate()
     {
-        xInput = Input.GetAxis("Horizontal");
-        yInput = Input.GetAxis("Vertical");
+        if (!pauseMenu.isPaused())
+        {
+            xInput = Input.GetAxis("Horizontal");
+            yInput = Input.GetAxis("Vertical");
 
-        Vector3 playerInput = cameraHold.transform.forward * yInput + cameraHold.transform.right * xInput;
-        playerInput.y = 0;
+            Vector3 playerInput = cameraHold.transform.forward * yInput + cameraHold.transform.right * xInput;
+            playerInput.y = 0;
 
-        rb.AddForce (playerInput * moveSpeed, ForceMode.Force);
+            rb.AddForce(playerInput * moveSpeed, ForceMode.Force);
+        }
     }
 
     IEnumerator HandleDash()
